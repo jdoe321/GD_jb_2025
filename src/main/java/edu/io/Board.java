@@ -2,7 +2,7 @@ package edu.io;
 
 public class Board 
 {
-    public final int size;
+    private final int size;
     public Token[][] grid;
     
     public Board(int size) 
@@ -15,6 +15,11 @@ public class Board
     public Board() //konstuktor domyslny
     {
         this(8);
+    }
+
+    public int size()
+    {
+        return size;
     }
 
     public void clean()
