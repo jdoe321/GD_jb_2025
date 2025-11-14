@@ -18,6 +18,11 @@ public class PlayerToken extends Token
         this.row = row;
     }
 
+    public PlayerToken(Board board) 
+    {
+        this(board, 0, 0);
+    }
+
     public void move(Move dir)
     {
         int newRow = row;

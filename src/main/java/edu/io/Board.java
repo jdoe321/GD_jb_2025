@@ -40,10 +40,11 @@ public class Board
         grid[col][row] = token;
     }
 
-    public Token square(int col, int row)
+    public Token peekToken(int col, int row)
     {
         return grid[col][row];
     }
+
 
     public void display()
     {
