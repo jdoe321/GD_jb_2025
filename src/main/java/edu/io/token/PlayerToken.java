@@ -16,6 +16,8 @@ public class PlayerToken extends Token
         this.board = board;
         this.col = col;
         this.row = row;
+
+        board.placeToken(col, row, this);
     }
 
     public PlayerToken(Board board) 
@@ -53,8 +55,10 @@ public class PlayerToken extends Token
         }
 
         //przypisanie nowej pozycji
+        board.placeToken(col, row, new Token(Label.EMPTY_TOKEN_LABEL)); //usuniecie tokenu z obecnej pozycji
         col = newCol;
         row = newRow;
+        board.placeToken(col, row, this); //ustawienie tokenu na nowej pozycji
     }
 
     public Board.Coords pos()
