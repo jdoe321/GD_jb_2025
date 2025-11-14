@@ -1,0 +1,3 @@
+[submodule "src/test/java/gold_rush_tests"]
+	path = src/test/java/gold_rush_tests
+	url = https://gitlab.com/edu.io/gold_rush_tests.git
