@@ -4,6 +4,8 @@ import edu.io.Board;
 
 public class PlayerToken extends Token 
 {
+    public enum Move{ NONE, LEFT, RIGHT, UP, DOWN }
+
     private final Board board;
     private int col;
     private int row;
@@ -16,9 +18,38 @@ public class PlayerToken extends Token
         this.row = row;
     }
 
-    public void move(int dir)
+    public void move(Move dir)
     {
-        // TODO: zaimplementowanie poruszania
+        int newRow = row;
+        int newCol = col;
+
+        switch (dir) 
+        {
+            case LEFT:
+                newCol--;
+                break;
+            case RIGHT:
+                newCol++;
+                break;
+            case UP:
+                newRow--;
+                break;
+            case DOWN:
+                newRow++;
+                break;
+            case NONE:
+                //nic nie rob
+                break;
+        }
+
+        if (newCol < 0 || newCol >= board.size() || newRow < 0 || newRow >= board.size()) 
+        {
+            throw new IllegalArgumentException("Cannot move outside the board");
+        }
+
+        //przypisanie nowej pozycji
+        col = newCol;
+        row = newRow;
     }
 
     public Board.Coords pos()
