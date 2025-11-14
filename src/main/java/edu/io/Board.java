@@ -1,13 +1,14 @@
 package edu.io;
 
+import edu.io.token.EmptyToken;
+import edu.io.token.Token;
+
 public class Board 
 {
-    public int size; //TODO:enkapsulacja
+    private final int size;
     public Token[][] grid;
 
-    final String EMPTY_TOKEN_LABEL = "・";
-    final String PLAYER_TOKEN_LABEL = "웃";
-    final String GOLD_TOKEN_LABEL = "💰︎";
+    public record Coords(int col, int row) {}
     
     public Board(int size) 
     {
@@ -21,11 +22,17 @@ public class Board
         this(8);
     }
 
+    public int size()
+    {
+        return size;
+    }
+
     public void clean()
     {
+        Token t = new EmptyToken();
         for (int row = 0; row < size; row++) 
             for (int col = 0; col < size; col++) 
-                grid[col][row] = new Token(EMPTY_TOKEN_LABEL);
+                grid[col][row] = t;
     }
 
     public void placeToken(int col, int row, Token token)
@@ -33,10 +40,11 @@ public class Board
         grid[col][row] = token;
     }
 
-    public Token square(int col, int row)
+    public Token peekToken(int col, int row)
     {
         return grid[col][row];
     }
+
 
     public void display()
     {
@@ -44,7 +52,7 @@ public class Board
         {
             for (int col = 0; col < size; col++)
             { 
-                System.out.print(grid[col][row].label);
+                System.out.print(grid[col][row].label());
                 System.out.print(" ");
             }
             System.out.println();
