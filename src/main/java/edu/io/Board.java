@@ -7,6 +7,8 @@ public class Board
 {
     private final int size;
     public Token[][] grid;
+
+    public record Coords(int col, int row) {}
     
     public Board(int size) 
     {

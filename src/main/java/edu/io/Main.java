@@ -8,7 +8,7 @@ public class Main
     public static void main(String[] args) 
     {
         Board board = new Board();
-        PlayerToken playerToken = new PlayerToken();
+        PlayerToken playerToken = new PlayerToken(board, 2, 3);
         GoldToken goldToken = new GoldToken();
 
         board.grid[2][3] = playerToken;
