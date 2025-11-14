@@ -2,10 +2,15 @@ package edu.io;
 
 public class Token 
 {
-    public String label; //TODO: enkapsulacja
+    private final String label; 
 
     public Token(String label) 
     {
         this.label = label;
+    }
+
+    public String label() 
+    {
+        return label;
     }
 }

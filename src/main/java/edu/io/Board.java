@@ -2,7 +2,7 @@ package edu.io;
 
 public class Board 
 {
-    public int size; //TODO:enkapsulacja
+    public final int size;
     public Token[][] grid;
 
     final String EMPTY_TOKEN_LABEL = "・";
@@ -23,9 +23,10 @@ public class Board
 
     public void clean()
     {
+        Token t = new Token(EMPTY_TOKEN_LABEL);
         for (int row = 0; row < size; row++) 
             for (int col = 0; col < size; col++) 
-                grid[col][row] = new Token(EMPTY_TOKEN_LABEL);
+                grid[col][row] = t;
     }
 
     public void placeToken(int col, int row, Token token)
@@ -44,7 +45,7 @@ public class Board
         {
             for (int col = 0; col < size; col++)
             { 
-                System.out.print(grid[col][row].label);
+                System.out.print(grid[col][row].label());
                 System.out.print(" ");
             }
             System.out.println();
