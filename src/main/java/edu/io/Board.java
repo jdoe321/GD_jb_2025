@@ -1,5 +1,8 @@
 package edu.io;
 
+import edu.io.token.Label;
+import edu.io.token.Token;
+
 public class Board 
 {
     private final int size;
