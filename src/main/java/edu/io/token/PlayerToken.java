@@ -25,6 +25,10 @@ public class PlayerToken extends Token
         this(board, 0, 0);
     }
 
+    // Alias dla Move
+    public static Move Move = PlayerToken.Move.NONE;
+
+
     public void move(Move dir)
     {
         int newRow = row;
@@ -32,19 +36,19 @@ public class PlayerToken extends Token
 
         switch (dir) 
         {
-            case LEFT:
+            case Move.LEFT:
                 newCol--;
                 break;
-            case RIGHT:
+            case Move.RIGHT:
                 newCol++;
                 break;
-            case UP:
+            case Move.UP:
                 newRow--;
                 break;
-            case DOWN:
+            case Move.DOWN:
                 newRow++;
                 break;
-            case NONE:
+            case Move.NONE:
                 //nic nie rob
                 break;
         }
