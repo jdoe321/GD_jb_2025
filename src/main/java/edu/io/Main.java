@@ -11,7 +11,7 @@ public class Main
         PlayerToken playerToken = new PlayerToken(board, 2, 3);
         GoldToken goldToken = new GoldToken();
 
-        board.grid[2][3] = playerToken;
+        // board.grid[2][3] = playerToken;
         board.grid[5][6] = goldToken;
 
         board.display();

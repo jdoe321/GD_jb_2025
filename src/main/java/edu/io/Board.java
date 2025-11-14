@@ -1,6 +1,6 @@
 package edu.io;
 
-import edu.io.token.Label;
+import edu.io.token.EmptyToken;
 import edu.io.token.Token;
 
 public class Board 
@@ -29,7 +29,7 @@ public class Board
 
     public void clean()
     {
-        Token t = new Token(Label.EMPTY_TOKEN_LABEL);
+        Token t = new EmptyToken();
         for (int row = 0; row < size; row++) 
             for (int col = 0; col < size; col++) 
                 grid[col][row] = t;

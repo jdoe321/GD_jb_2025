@@ -1,6 +1,6 @@
 package edu.io.token;
 
-public class Token 
+public abstract class Token 
 {
     private final String label; 
 

@@ -55,7 +55,7 @@ public class PlayerToken extends Token
         }
 
         //przypisanie nowej pozycji
-        board.placeToken(col, row, new Token(Label.EMPTY_TOKEN_LABEL)); //usuniecie tokenu z obecnej pozycji
+        board.placeToken(col, row, new EmptyToken()); //usuniecie tokenu z obecnej pozycji
         col = newCol;
         row = newRow;
         board.placeToken(col, row, this); //ustawienie tokenu na nowej pozycji
