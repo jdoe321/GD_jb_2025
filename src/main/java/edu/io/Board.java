@@ -40,7 +40,15 @@ public class Board
 
     public void display()
     {
-        System.out.println("Display placeholder"); //TODO: zrobic wyswietlanie
+        for (int row = 0; row < size; row++)
+        {
+            for (int col = 0; col < size; col++)
+            { 
+                System.out.print(grid[col][row].label);
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+    
     }
-
 }
