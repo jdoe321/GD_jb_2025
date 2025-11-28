@@ -67,12 +67,7 @@ public class PlayerToken extends Token
             throw new IllegalArgumentException("Cannot move outside the board");
         }
 
-        Token tokenAtNewPos = board.peekToken(newCol, newRow);
-        if (tokenAtNewPos instanceof GoldToken) 
-        {
-            player.gainGold(((GoldToken)tokenAtNewPos).amount() );
-            System.out.println("Gold collected: " + player.gold());
-        }
+        player.interactWithToken(board.peekToken(newCol, newRow));
 
         //przypisanie nowej pozycji
         board.placeToken(col, row, new EmptyToken()); //usuniecie tokenu z obecnej pozycji

@@ -1,6 +1,8 @@
 package edu.io;
 
 import edu.io.token.PlayerToken;
+import edu.io.token.GoldToken;
+import edu.io.token.Token;
 
 public class Player 
 {
@@ -50,4 +52,12 @@ public class Player
         }
     }
     
+    public void interactWithToken(Token token)
+    {
+        if (token instanceof GoldToken) 
+            {
+                this.gainGold(((GoldToken)token).amount() );
+                System.out.println("Gold collected: " + this.gold());
+            }
+    }
 }
