@@ -1,9 +1,12 @@
 package edu.io.token;
 
 import edu.io.Board;
+import edu.io.Player;
 
 public class PlayerToken extends Token 
 {
+
+    private Player player;
     public enum Move{ NONE, LEFT, RIGHT, UP, DOWN }
 
     private final Board board;
@@ -67,7 +70,8 @@ public class PlayerToken extends Token
         Token tokenAtNewPos = board.peekToken(newCol, newRow);
         if (tokenAtNewPos instanceof GoldToken) 
         {
-            System.out.println("GOLD!");
+            player.gainGold(((GoldToken)tokenAtNewPos).amount() );
+            System.out.println("Gold collected: " + player.gold());
         }
 
         //przypisanie nowej pozycji
@@ -80,6 +84,11 @@ public class PlayerToken extends Token
     public Board.Coords pos()
     {
         return new Board.Coords(col, row);
+    }
+
+    public void assignToPlayer(Player player) 
+    {
+        this.player = player;
     }
 
 }

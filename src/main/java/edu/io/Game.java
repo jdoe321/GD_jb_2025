@@ -1,6 +1,7 @@
 package edu.io;
 
 import edu.io.token.PlayerToken;
+import edu.io.token.GoldToken;
 
 public class Game
 {
@@ -21,6 +22,12 @@ public class Game
 
     public void start()
     {
+        //do testow:
+        GoldToken gold1 = new GoldToken(25.0);
+        board.placeToken(2, 2, gold1);
+        GoldToken gold2 = new GoldToken(50.0);
+        board.placeToken(4, 4, gold2);
+
         while (true)
         {
             board.display();

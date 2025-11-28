@@ -22,6 +22,7 @@ public class Player
     public void assignToken(PlayerToken token) 
     {
         this.token = token;
+        token.assignToPlayer(this);
     }
 
     public PlayerToken token() 
