@@ -7,12 +7,16 @@ public class GoldToken extends Token
     public GoldToken() 
     {
         super(Label.GOLD_TOKEN_LABEL);
-        this.amount = 100.0;
+        this.amount = 1.0;
     }
 
     public GoldToken(double amount) 
     {
         super(Label.GOLD_TOKEN_LABEL);
+        
+        if (amount < 0.0) 
+            throw new IllegalArgumentException("Amount nie moze byc ujemne");
+
         this.amount = amount;
     }
 

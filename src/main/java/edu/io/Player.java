@@ -39,11 +39,17 @@ public class Player
 
     public void gainGold(double amount) 
     {
+        if(amount < 0) 
+            throw new IllegalArgumentException("amount nie moze byc ujemne");
+
         gold += amount;
     }
 
     public void loseGold(double amount) 
     {
+        if(amount < 0) 
+            throw new IllegalArgumentException("amount nie moze byc ujemne");
+        
         gold -= amount;
         if (gold < 0) 
         {
