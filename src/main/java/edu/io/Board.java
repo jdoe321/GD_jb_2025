@@ -59,4 +59,14 @@ public class Board
         }
     
     }
+
+    public Coords getAvailableSquare()
+    {
+        for (int row = 0; row < size; row++) 
+            for (int col = 0; col < size; col++) 
+                if (grid[col][row] instanceof EmptyToken) 
+                    return new Coords(col, row);
+        
+        throw new IllegalStateException("Brak miejsca.");
+    }
 }
