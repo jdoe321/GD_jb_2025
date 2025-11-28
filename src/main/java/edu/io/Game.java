@@ -1,0 +1,61 @@
+package edu.io;
+
+import edu.io.token.PlayerToken;
+
+public class Game
+{
+    public Board board;
+    public Player player;
+
+    public Game()
+    {
+        board = new Board();
+
+        PlayerToken playerToken = new PlayerToken(board, 2, 3);
+        player = new Player(playerToken);
+    }
+
+    public void join(Player player)
+    {
+        this.player = player;
+    }
+
+    public void start()
+    {
+        while (true)
+        {
+            board.display();
+
+            System.out.println("Wpisz W A S D do poruszania.");
+            System.out.println("");
+            try {
+                int key = System.in.read();
+                System.in.read(); // Ignorowanie znaku nowej linii
+                switch (key) {
+                    case 'W':
+                    case 'w':
+                        player.token.move(PlayerToken.Move.UP);
+                        break;
+                    case 'S':
+                    case 's':
+                        player.token.move(PlayerToken.Move.DOWN);
+                        break;
+                    case 'A':
+                    case 'a':
+                        player.token.move(PlayerToken.Move.LEFT);
+                        break;
+                    case 'D':
+                    case 'd':
+                        player.token.move(PlayerToken.Move.RIGHT);
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+            
+            System.out.println("");
+            System.out.println("");
+        }
+
+    }
+}

@@ -4,7 +4,7 @@ import edu.io.token.PlayerToken;
 
 public class Player 
 {
-    private PlayerToken token;
+    public PlayerToken token;
 
     public Player(PlayerToken token) 
     {
