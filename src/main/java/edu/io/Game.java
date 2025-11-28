@@ -10,14 +10,13 @@ public class Game
     public Game()
     {
         board = new Board();
-
-        PlayerToken playerToken = new PlayerToken(board, 2, 3);
-        player = new Player(playerToken);
     }
 
     public void join(Player player)
     {
         this.player = player;
+        PlayerToken token = new PlayerToken(board);
+        player.assignToken(token);
     }
 
     public void start()

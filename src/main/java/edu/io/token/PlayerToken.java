@@ -10,6 +10,17 @@ public class PlayerToken extends Token
     private int col;
     private int row;
 
+    public PlayerToken(Board board)
+    {
+        super(Label.PLAYER_TOKEN_LABEL);
+        this.board = board;
+        Board.Coords coords = board.getAvailableSquare();
+        this.col = coords.col();
+        this.row = coords.row();
+
+        board.placeToken(col, row, this);
+    }
+
     public PlayerToken(Board board, int col, int row) 
     {
         super(Label.PLAYER_TOKEN_LABEL);
@@ -18,11 +29,6 @@ public class PlayerToken extends Token
         this.row = row;
 
         board.placeToken(col, row, this);
-    }
-
-    public PlayerToken(Board board) 
-    {
-        this(board, 0, 0);
     }
 
     // Alias dla Move

@@ -6,6 +6,11 @@ public class Player
 {
     public PlayerToken token;
 
+    public Player()
+    {
+        this.token = null;
+    }
+
     public Player(PlayerToken token) 
     {
         this.assignToken(token);

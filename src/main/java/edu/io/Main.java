@@ -9,6 +9,10 @@ public class Main
     {
         //inicjalizacja gry
         Game game = new Game();
+        Player player = new Player();
+        
+        game.join(player);
+        
         game.start();
             
     }
