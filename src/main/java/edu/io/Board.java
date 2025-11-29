@@ -7,6 +7,8 @@ public class Board
 {
     private final int size;
     public Token[][] grid;
+    public enum PlacementStrategy{ FIRST, RANDOM }
+    private PlacementStrategy placementStrategy = PlacementStrategy.FIRST;
 
     public record Coords(int col, int row) {}
     
@@ -60,13 +62,62 @@ public class Board
     
     }
 
+    public void setPlacementStrategy(PlacementStrategy strategy)
+    {
+        this.placementStrategy = strategy;
+    }
+
+    public PlacementStrategy getPlacementStrategy()
+    {
+        return this.placementStrategy;
+    }
+
     public Coords getAvailableSquare()
     {
-        for (int row = 0; row < size; row++) 
-            for (int col = 0; col < size; col++) 
+        if (placementStrategy == PlacementStrategy.RANDOM) 
+        {
+            java.util.Random rand = new java.util.Random();
+            int emptyCount = 0;
+
+            // Count empty squares
+            for (int row = 0; row < size; row++) 
+                for (int col = 0; col < size; col++) 
+                    if (grid[col][row] instanceof EmptyToken) 
+                        emptyCount++;
+
+            if (emptyCount == 0) 
+                throw new IllegalStateException("Brak miejsca.");
+
+            // Try to find a random empty square
+            int attempts = 0;
+            int maxAttempts = size * size * size * size; //jakies zabezpieczenie na wszelki wypadek
+
+            while (attempts < maxAttempts) 
+            {
+                int col = rand.nextInt(size);
+                int row = rand.nextInt(size);
+
                 if (grid[col][row] instanceof EmptyToken) 
                     return new Coords(col, row);
-        
-        throw new IllegalStateException("Brak miejsca.");
+
+                attempts++;
+            }
+
+            // Fallback to sequential search if random attempts fail
+            for (int row = 0; row < size; row++) 
+                for (int col = 0; col < size; col++) 
+                    if (grid[col][row] instanceof EmptyToken) 
+                        return new Coords(col, row);
+
+            throw new IllegalStateException("Brak miejsca.");
+        } else // PlacementStrategy.FIRST
+        {
+            for (int row = 0; row < size; row++) 
+                for (int col = 0; col < size; col++) 
+                    if (grid[col][row] instanceof EmptyToken) 
+                        return new Coords(col, row);
+            
+            throw new IllegalStateException("Brak miejsca.");
+        }
     }
 }
