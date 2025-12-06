@@ -1,4 +1,4 @@
-package edu.io;
+package edu.io.player;
 
 public class Gold
 {

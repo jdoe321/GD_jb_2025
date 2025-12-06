@@ -1,6 +1,7 @@
-package edu.io;
+package edu.io.player;
 
 import edu.io.token.*;
+import edu.io.player.Gold;
 
 public class Player 
 {
