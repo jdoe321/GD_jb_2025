@@ -1,6 +1,8 @@
 package edu.io.player;
 
 import java.util.Stack;
+
+import edu.io.token.NoTool;
 import edu.io.token.Tool;
 
 public class Shed
@@ -26,7 +28,7 @@ public class Shed
     {
         if (tools.isEmpty())
         {
-            return null; //TODO: fixme
+            return new NoTool();
         }
         return tools.pop();
     }

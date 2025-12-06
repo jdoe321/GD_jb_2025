@@ -44,7 +44,7 @@ public class Player
                 double amount = (goldToken).amount();
                 Tool tool = shed.getTool();
 
-                if (tool instanceof PickaxeToken pickaxe)  //TODO: fixme
+                if (tool instanceof PickaxeToken pickaxe)
                 {   
                     pickaxe.useWith(goldToken)
                         .ifWorking(() ->
@@ -73,14 +73,13 @@ public class Player
             }
             case AnvilToken anvilToken ->
             {
-                Tool tool = shed.getTool();
-                if (tool instanceof PickaxeToken pickaxe) 
+                if ( shed.getTool() instanceof Repairable tool) 
                 {
-                    pickaxe.repair();
+                    tool.repair();
                     System.out.println("naprawione");
                 } else 
                 {
-                    System.out.println("Brak kilofa");
+                    System.out.println("Brak narzedzia do naprawienia");
                 }
             }
             default ->
