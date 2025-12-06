@@ -5,19 +5,17 @@ import edu.io.token.*;
 public class Player 
 {
     public PlayerToken token;
-    private double gold;
+    private final Gold gold = new Gold(0.0);
     private Token pickaxeToken = new EmptyToken();
 
     public Player()
     {
         this.token = null;
-        gold = 0.0;
     }
 
     public Player(PlayerToken token) 
     {
         this.assignToken(token);
-        gold = 0.0;
     }
 
     public void assignToken(PlayerToken token) 
@@ -33,28 +31,7 @@ public class Player
 
     public double gold() 
     {
-        return gold;
-    }
-
-    public void gainGold(double amount) 
-    {
-        if(amount < 0) 
-            throw new IllegalArgumentException("amount nie moze byc ujemne");
-
-        gold += amount;
-    }
-
-    public void loseGold(double amount) 
-    {
-        if(amount < 0) 
-            throw new IllegalArgumentException("amount nie moze byc ujemne");
-        
-        gold -= amount;
-        if (gold < 0) 
-        {
-            gold = 0;
-            throw new IllegalArgumentException("zabraklo zlota");
-        }
+        return gold.amount();
     }
     
     public void interactWithToken(Token token)
@@ -67,20 +44,20 @@ public class Player
                 pickaxe.useWith(goldToken)
                     .ifWorking(() ->
                     {
-                        gainGold(amount * pickaxe.gainFactor());
+                        gold.gain(amount * pickaxe.gainFactor());
                     })
                     .ifBroken(() ->
                     {
-                        gainGold(amount);
+                        gold.gain(amount);
                         pickaxeToken = new EmptyToken();
                     })
                     .ifIdle(() -> 
                     {
-                        gainGold(amount);
+                        gold.gain(amount);
                     });
             } else 
             {
-                gainGold(amount);
+                gold.gain(amount);
             }
 
             System.out.println("Gold collected: " + this.gold());
