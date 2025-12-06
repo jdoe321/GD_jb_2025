@@ -37,47 +37,52 @@ public class Player
     
     public void interactWithToken(Token token)
     {
-        if (token instanceof GoldToken goldToken) 
+        switch (token)
         {
-            double amount = (goldToken).amount();
-            if (pickaxeToken instanceof PickaxeToken pickaxe) 
-            {   
-                pickaxe.useWith(goldToken)
-                    .ifWorking(() ->
-                    {
-                        gold.gain(amount * pickaxe.gainFactor());
-                    })
-                    .ifBroken(() ->
-                    {
-                        gold.gain(amount);
-                        pickaxeToken = new EmptyToken();
-                    })
-                    .ifIdle(() -> 
-                    {
-                        gold.gain(amount);
-                    });
-            } else 
+            case GoldToken goldToken ->
             {
-                gold.gain(amount);
+                double amount = (goldToken).amount();
+                if (pickaxeToken instanceof PickaxeToken pickaxe) 
+                {   
+                    pickaxe.useWith(goldToken)
+                        .ifWorking(() ->
+                        {
+                            gold.gain(amount * pickaxe.gainFactor());
+                        })
+                        .ifBroken(() ->
+                        {
+                            gold.gain(amount);
+                            pickaxeToken = new EmptyToken();
+                        })
+                        .ifIdle(() -> 
+                        {
+                            gold.gain(amount);
+                        });
+                } else 
+                {
+                    gold.gain(amount);
+                }
+                System.out.println("Gold collected: " + this.gold());
             }
-
-            System.out.println("Gold collected: " + this.gold());
-        }
-
-        else if (token instanceof PickaxeToken pickaxeToken)
-        {
-            this.pickaxeToken = pickaxeToken;
-        }
-
-        else if (token instanceof AnvilToken)
-        {
-            if (pickaxeToken instanceof PickaxeToken pickaxe) 
+            case PickaxeToken pickaxeToken ->
             {
-                pickaxe.repair();
-                System.out.println("naprawione");
-            } else 
+                this.pickaxeToken = pickaxeToken;
+                System.out.println("Podniesiony kilof");
+            }
+            case AnvilToken anvilToken ->
             {
-                System.out.println("Brak kilofa");
+                if (pickaxeToken instanceof PickaxeToken pickaxe) 
+                {
+                    pickaxe.repair();
+                    System.out.println("naprawione");
+                } else 
+                {
+                    System.out.println("Brak kilofa");
+                }
+            }
+            default ->
+            {
+                // Nieznany token,
             }
         }
     }
