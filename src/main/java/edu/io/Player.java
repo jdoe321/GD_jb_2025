@@ -6,7 +6,7 @@ public class Player
 {
     public PlayerToken token;
     private double gold;
-    private boolean hasPickaxe = false;
+    private Token pickaxeToken = new EmptyToken();
 
     public Player()
     {
@@ -59,20 +59,20 @@ public class Player
     
     public void interactWithToken(Token token)
     {
-        if (token instanceof GoldToken) 
+        if (token instanceof GoldToken goldToken) 
         {
-            double amount = ((GoldToken)token).amount();
-            if (hasPickaxe) 
+            double amount = (goldToken).amount();
+            if (pickaxeToken instanceof PickaxeToken pf) 
             {
-                amount *= 1.5;
+                amount *= pf.gainFactor();
             }
             this.gainGold(amount);
             System.out.println("Gold collected: " + this.gold());
         }
 
-        else if (token instanceof PickaxeToken)
+        else if (token instanceof PickaxeToken pickaxeToken)
         {
-            hasPickaxe = true;
+            this.pickaxeToken = pickaxeToken;
         }
     }
 }
