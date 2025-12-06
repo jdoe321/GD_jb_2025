@@ -64,7 +64,7 @@ public class Player
             double amount = (goldToken).amount();
             if (pickaxeToken instanceof PickaxeToken pf) 
             {
-                if (pf.durability() > 0) 
+                if (!pf.isBroken()) 
                 {
                     amount *= pf.gainFactor();
                     pf.use();

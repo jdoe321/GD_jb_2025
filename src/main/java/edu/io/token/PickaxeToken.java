@@ -44,4 +44,9 @@ public class PickaxeToken extends Token
         
         durability--;
     }
+
+    public boolean isBroken() 
+    {
+        return durability <= 0;
+    }
 }
