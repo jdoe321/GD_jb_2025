@@ -7,7 +7,7 @@ public class Player
 {
     public PlayerToken token;
     private final Gold gold = new Gold(0.0);
-    private Token pickaxeToken = new EmptyToken();
+    private Shed shed = new Shed();
 
     public Player()
     {
@@ -42,7 +42,9 @@ public class Player
             case GoldToken goldToken ->
             {
                 double amount = (goldToken).amount();
-                if (pickaxeToken instanceof PickaxeToken pickaxe) 
+                Tool tool = shed.getTool();
+
+                if (tool instanceof PickaxeToken pickaxe)  //TODO: fixme
                 {   
                     pickaxe.useWith(goldToken)
                         .ifWorking(() ->
@@ -52,7 +54,7 @@ public class Player
                         .ifBroken(() ->
                         {
                             gold.gain(amount);
-                            pickaxeToken = new EmptyToken();
+                            shed.dropTool();
                         })
                         .ifIdle(() -> 
                         {
@@ -66,12 +68,13 @@ public class Player
             }
             case PickaxeToken pickaxeToken ->
             {
-                this.pickaxeToken = pickaxeToken;
+                shed.add(pickaxeToken);
                 System.out.println("Podniesiony kilof");
             }
             case AnvilToken anvilToken ->
             {
-                if (pickaxeToken instanceof PickaxeToken pickaxe) 
+                Tool tool = shed.getTool();
+                if (tool instanceof PickaxeToken pickaxe) 
                 {
                     pickaxe.repair();
                     System.out.println("naprawione");

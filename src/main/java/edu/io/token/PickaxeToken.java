@@ -1,6 +1,6 @@
 package edu.io.token;
 
-public class PickaxeToken extends Token
+public class PickaxeToken extends Token implements Tool
 {
     private double gainFactor;
     private int durability;
