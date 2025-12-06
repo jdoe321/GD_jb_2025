@@ -4,6 +4,7 @@ public class PickaxeToken extends Token
 {
     private double gainFactor;
     private int durability;
+    private Token withToken;
 
     public PickaxeToken(double gainFactor, int durability)
     {
@@ -39,7 +40,7 @@ public class PickaxeToken extends Token
     
     public void use() 
     {
-        if (durability <= 0) 
+        if (durability < 0) 
             throw new IllegalStateException("Kilof jest juz zniszczony");
         
         durability--;
@@ -47,6 +48,39 @@ public class PickaxeToken extends Token
 
     public boolean isBroken() 
     {
-        return durability <= 0;
+        return durability < 0;
     }
+
+    public PickaxeToken useWith(Token withToken) 
+    {
+        this.withToken = withToken;
+        this.use();
+        return this;
+    }
+
+    public PickaxeToken ifWorking(Runnable action) 
+    {
+        if (!isBroken() && withToken instanceof GoldToken) 
+        {
+            action.run();
+        }     
+        
+        return this;
+    }
+
+    public PickaxeToken ifBroken(Runnable action) 
+    {
+        if (isBroken() && withToken instanceof GoldToken) 
+        {
+            action.run();
+        }
+        return this;
+    }
+
+    public PickaxeToken ifIdle(Runnable action) 
+    {
+
+        return this;
+    }
+
 }

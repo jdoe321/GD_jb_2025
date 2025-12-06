@@ -62,19 +62,27 @@ public class Player
         if (token instanceof GoldToken goldToken) 
         {
             double amount = (goldToken).amount();
-            if (pickaxeToken instanceof PickaxeToken pf) 
+            if (pickaxeToken instanceof PickaxeToken pickaxe) 
+            {   
+                pickaxe.useWith(goldToken)
+                    .ifWorking(() ->
+                    {
+                        gainGold(amount * pickaxe.gainFactor());
+                    })
+                    .ifBroken(() ->
+                    {
+                        gainGold(amount);
+                        pickaxeToken = new EmptyToken();
+                    })
+                    .ifIdle(() -> 
+                    {
+                        gainGold(amount);
+                    });
+            } else 
             {
-                if (!pf.isBroken()) 
-                {
-                    amount *= pf.gainFactor();
-                    pf.use();
-                } else
-                {
-                    pickaxeToken = new EmptyToken();
-                }
-                
+                gainGold(amount);
             }
-            this.gainGold(amount);
+            
             System.out.println("Gold collected: " + this.gold());
         }
 
