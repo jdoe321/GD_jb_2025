@@ -1,7 +1,6 @@
 package edu.io;
 
-import edu.io.token.PlayerToken;
-import edu.io.token.GoldToken;
+import edu.io.token.*;
 
 public class Game
 {
@@ -27,6 +26,9 @@ public class Game
         board.placeToken(2, 2, gold1);
         GoldToken gold2 = new GoldToken(50.0);
         board.placeToken(4, 4, gold2);
+
+        PickaxeToken pickaxe = new PickaxeToken();
+        board.placeToken(1, 3, pickaxe);
 
         while (true)
         {

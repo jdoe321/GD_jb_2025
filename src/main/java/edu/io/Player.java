@@ -1,13 +1,12 @@
 package edu.io;
 
-import edu.io.token.PlayerToken;
-import edu.io.token.GoldToken;
-import edu.io.token.Token;
+import edu.io.token.*;
 
 public class Player 
 {
     public PlayerToken token;
     private double gold;
+    private boolean hasPickaxe = false;
 
     public Player()
     {
@@ -61,9 +60,19 @@ public class Player
     public void interactWithToken(Token token)
     {
         if (token instanceof GoldToken) 
+        {
+            double amount = ((GoldToken)token).amount();
+            if (hasPickaxe) 
             {
-                this.gainGold(((GoldToken)token).amount() );
-                System.out.println("Gold collected: " + this.gold());
+                amount *= 1.5;
             }
+            this.gainGold(amount);
+            System.out.println("Gold collected: " + this.gold());
+        }
+
+        else if (token instanceof PickaxeToken)
+        {
+            hasPickaxe = true;
+        }
     }
 }
