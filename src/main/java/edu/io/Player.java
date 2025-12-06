@@ -64,7 +64,15 @@ public class Player
             double amount = (goldToken).amount();
             if (pickaxeToken instanceof PickaxeToken pf) 
             {
-                amount *= pf.gainFactor();
+                if (pf.durability() > 0) 
+                {
+                    amount *= pf.gainFactor();
+                    pf.use();
+                } else
+                {
+                    pickaxeToken = new EmptyToken();
+                }
+                
             }
             this.gainGold(amount);
             System.out.println("Gold collected: " + this.gold());

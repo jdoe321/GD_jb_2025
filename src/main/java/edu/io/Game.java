@@ -27,7 +27,7 @@ public class Game
         GoldToken gold2 = new GoldToken(50.0);
         board.placeToken(4, 4, gold2);
 
-        PickaxeToken pickaxe = new PickaxeToken(3.0);
+        PickaxeToken pickaxe = new PickaxeToken(3.0, 1);
         board.placeToken(1, 3, pickaxe);
 
         while (true)
