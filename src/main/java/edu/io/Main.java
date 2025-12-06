@@ -1,5 +1,7 @@
 package edu.io;
 
+import edu.io.player.Player;
+
 // import edu.io.token.GoldToken;
 // import edu.io.token.PlayerToken;
 
