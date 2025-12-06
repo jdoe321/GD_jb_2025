@@ -10,9 +10,9 @@ public class PickaxeToken extends Token implements Tool, Repairable
     public PickaxeToken(double gainFactor, int durability)
     {
         super(Label.PICKAXE_TOKEN_LABEL);
-        if (gainFactor < 0.0) 
+        if (gainFactor <= 0.0) 
             throw new IllegalArgumentException("gainFactor nie moze byc ujemny");
-        if (durability < 0) 
+        if (durability <= 0) 
             throw new IllegalArgumentException("durability musi byc dodatnie");
         
         this.gainFactor = gainFactor;
@@ -22,7 +22,7 @@ public class PickaxeToken extends Token implements Tool, Repairable
 
     public PickaxeToken(double gainFactor)
     {
-        this(gainFactor, 10);
+        this(gainFactor, 3);
     }
     
     public PickaxeToken()
@@ -42,7 +42,7 @@ public class PickaxeToken extends Token implements Tool, Repairable
     
     public void use() 
     {
-        if (durability < 0) 
+        if (durability <= 0) 
             throw new IllegalStateException("Kilof jest juz zniszczony");
         
         durability--;
@@ -50,13 +50,13 @@ public class PickaxeToken extends Token implements Tool, Repairable
 
     public boolean isBroken() 
     {
-        return durability < 0;
+        return durability <= 0;
     }
 
     public PickaxeToken useWith(Token withToken) 
     {
         this.withToken = withToken;
-        this.use();
+
         return this;
     }
 
@@ -64,6 +64,8 @@ public class PickaxeToken extends Token implements Tool, Repairable
     {
         if (!isBroken() && withToken instanceof GoldToken) 
         {
+            this.use();
+            this.withToken = new EmptyToken(); //hotfix
             action.run();
         }     
         

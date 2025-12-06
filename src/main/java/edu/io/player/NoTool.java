@@ -1,4 +1,7 @@
-package edu.io.token;
+package edu.io.player;
+
+import edu.io.token.Token;
+import edu.io.token.Tool;
 
 public class NoTool implements Tool
 {

@@ -2,7 +2,6 @@ package edu.io.player;
 
 import java.util.Stack;
 
-import edu.io.token.NoTool;
 import edu.io.token.Tool;
 
 public class Shed
@@ -21,6 +20,11 @@ public class Shed
 
     public void add(Tool tool)
     {
+        if (tool == null)
+        {
+            throw new IllegalArgumentException("Tool nie moze byc nullem");
+        }
+
         tools.push(tool);
     }
 

@@ -6,7 +6,7 @@ import edu.io.player.Gold;
 public class Player 
 {
     public PlayerToken token;
-    private final Gold gold = new Gold(0.0);
+    public Gold gold = new Gold(0.0);
     private Shed shed = new Shed();
 
     public Player()
@@ -54,7 +54,7 @@ public class Player
                         .ifBroken(() ->
                         {
                             gold.gain(amount);
-                            shed.dropTool();
+                            // shed.dropTool();
                         })
                         .ifIdle(() -> 
                         {

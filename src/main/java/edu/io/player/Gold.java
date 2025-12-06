@@ -6,7 +6,7 @@ public class Gold
     
     public Gold() 
     {
-        this.amount = 1.0;
+        this.amount = 0.0;
     }
 
     public Gold(double amount) 
