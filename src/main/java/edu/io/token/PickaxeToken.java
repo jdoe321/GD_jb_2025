@@ -4,6 +4,7 @@ public class PickaxeToken extends Token
 {
     private double gainFactor;
     private int durability;
+    private int startingDurability;
     private Token withToken;
 
     public PickaxeToken(double gainFactor, int durability)
@@ -16,6 +17,7 @@ public class PickaxeToken extends Token
         
         this.gainFactor = gainFactor;
         this.durability = durability;
+        this.startingDurability = durability;
     }
 
     public PickaxeToken(double gainFactor)
@@ -81,6 +83,11 @@ public class PickaxeToken extends Token
     {
 
         return this;
+    }
+
+    public void repair()
+    {
+        this.durability = this.startingDurability;
     }
 
 }

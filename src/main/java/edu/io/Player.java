@@ -82,13 +82,25 @@ public class Player
             {
                 gainGold(amount);
             }
-            
+
             System.out.println("Gold collected: " + this.gold());
         }
 
         else if (token instanceof PickaxeToken pickaxeToken)
         {
             this.pickaxeToken = pickaxeToken;
+        }
+
+        else if (token instanceof AnvilToken)
+        {
+            if (pickaxeToken instanceof PickaxeToken pickaxe) 
+            {
+                pickaxe.repair();
+                System.out.println("naprawione");
+            } else 
+            {
+                System.out.println("Brak kilofa");
+            }
         }
     }
 }

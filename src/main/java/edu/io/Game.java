@@ -30,6 +30,9 @@ public class Game
         PickaxeToken pickaxe = new PickaxeToken(3.0, 1);
         board.placeToken(1, 3, pickaxe);
 
+        AnvilToken anvil = new AnvilToken();
+        board.placeToken(3, 3, anvil);
+
         while (true)
         {
             board.display();
