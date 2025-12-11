@@ -1,23 +1,30 @@
 package edu.io.player;
 
 import edu.io.token.*;
-import edu.io.player.Gold;
 
 public class Player 
 {
     public PlayerToken token;
     public Gold gold = new Gold(0.0);
     private Shed shed = new Shed();
-    private Vitals vitals = new Vitals();
+    private Vitals vitals = new Vitals(10);
 
     public Player()
     {
         this.token = null;
+        this.vitals.setOnDeathCallback(() -> 
+        {
+            System.out.println("Pelne odwodnenie.");
+        });
     }
 
     public Player(PlayerToken token) 
     {
         this.assignToken(token);
+        this.vitals.setOnDeathCallback(() -> 
+        {
+            System.out.println("Pelne odwodnenie.");
+        });
     }
 
     public void assignToken(PlayerToken token) 
