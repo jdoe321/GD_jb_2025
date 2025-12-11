@@ -45,7 +45,6 @@ public class Player
     
     public void interactWithToken(Token token)
     {
-        vitals.dehydrate(VitalsValues.DEHYDRATION_MOVE); //zawsze sie odwadnia, niezaleznie od dalszych dzialan
         switch (token)
         {
             case GoldToken goldToken ->
@@ -79,7 +78,6 @@ public class Player
             case PickaxeToken pickaxeToken ->
             {
                 shed.add(pickaxeToken);
-                System.out.println("Podniesiony kilof");
             }
             case AnvilToken anvilToken ->
             {
@@ -100,7 +98,7 @@ public class Player
             }
             default ->
             {
-                // Nieznany token,
+                vitals.dehydrate(VitalsValues.DEHYDRATION_MOVE);
             }
         }
     }
