@@ -28,7 +28,7 @@ public class Game
         GoldToken gold2 = new GoldToken(50.0);
         board.placeToken(4, 4, gold2);
 
-        PickaxeToken pickaxe = new PickaxeToken(3.0, 1);
+        PickaxeToken pickaxe = new PickaxeToken(2.0, 3);
         board.placeToken(1, 3, pickaxe);
 
         AnvilToken anvil = new AnvilToken();
@@ -37,6 +37,7 @@ public class Game
         while (true)
         {
             board.display();
+            player.displayStats();
 
             System.out.println("Wpisz W A S D do poruszania.");
             System.out.println("");

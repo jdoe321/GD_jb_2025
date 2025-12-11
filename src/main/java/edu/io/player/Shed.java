@@ -34,7 +34,7 @@ public class Shed
         {
             return new NoTool();
         }
-        return tools.pop();
+        return tools.peek();
     }
 
     public void dropTool()
