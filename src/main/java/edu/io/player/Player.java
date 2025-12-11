@@ -93,6 +93,11 @@ public class Player
                     System.out.println("Brak narzedzia do naprawienia");
                 }
             }
+            case WaterToken waterToken ->
+            {
+                int hydrationAmount = waterToken.amount();
+                vitals.hydrate(hydrationAmount);
+            }
             default ->
             {
                 // Nieznany token,
