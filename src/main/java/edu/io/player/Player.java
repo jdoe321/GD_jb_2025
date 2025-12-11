@@ -45,6 +45,11 @@ public class Player
     
     public void interactWithToken(Token token)
     {
+        if (!vitals.isAlive()) 
+        {
+            throw new IllegalStateException("Niezywy gracz nie moze wchodzic w interakcje z tokenami.");
+        }
+
         switch (token)
         {
             case GoldToken goldToken ->

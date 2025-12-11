@@ -9,8 +9,8 @@ public class Vitals
 
     public Vitals(int hydration) 
     {
-        if (hydration < 0) 
-            throw new IllegalArgumentException("hydration nie moze byc ujemny");
+        if ((hydration < 0) || (hydration > 100)) 
+            throw new IllegalArgumentException("hydration musi byc w zakresie [0;100]");
         
         this.hydration = hydration;
         onDeathCallback = () -> {};
@@ -32,6 +32,10 @@ public class Vitals
             throw new IllegalArgumentException("amount nie moze byc ujemny");
         
         hydration += amount;
+        if (hydration > 100) 
+        {
+            hydration = 100;
+        }
     }
 
     public void dehydrate(int amount) 

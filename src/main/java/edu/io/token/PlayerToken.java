@@ -1,5 +1,7 @@
 package edu.io.token;
 
+import java.util.Objects;
+
 import edu.io.Board;
 import edu.io.player.Player;
 
@@ -16,8 +18,9 @@ public class PlayerToken extends Token
     public PlayerToken(Player player, Board board)
     {
         super(Label.PLAYER_TOKEN_LABEL);
-        this.player = player;
-        this.board = board;
+        
+        this.player = Objects.requireNonNull(player, "Playter nie moze byc null");
+        this.board = Objects.requireNonNull(board, "Board nie moze byc null");
         Board.Coords coords = board.getAvailableSquare();
         this.col = coords.col();
         this.row = coords.row();
