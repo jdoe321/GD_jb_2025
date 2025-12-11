@@ -38,6 +38,7 @@ public class Player
     
     public void interactWithToken(Token token)
     {
+        vitals.dehydrate(VitalsValues.DEHYDRATION_MOVE); //zawsze sie odwadnia, niezaleznie od dalszych dzialan
         switch (token)
         {
             case GoldToken goldToken ->
@@ -65,6 +66,7 @@ public class Player
                 {
                     gold.gain(amount);
                 }
+                vitals.dehydrate(VitalsValues.DEHYDRATION_GOLD);
                 System.out.println("Gold collected: " + this.gold());
             }
             case PickaxeToken pickaxeToken ->
@@ -77,6 +79,7 @@ public class Player
                 if ( shed.getTool() instanceof Repairable tool) 
                 {
                     tool.repair();
+                    vitals.dehydrate(VitalsValues.DEHYDTRAION_ANVIL);
                     System.out.println("naprawione");
                 } else 
                 {
