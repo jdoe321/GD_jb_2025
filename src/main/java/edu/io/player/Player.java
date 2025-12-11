@@ -8,6 +8,7 @@ public class Player
     public PlayerToken token;
     public Gold gold = new Gold(0.0);
     private Shed shed = new Shed();
+    private Vitals vitals = new Vitals();
 
     public Player()
     {
