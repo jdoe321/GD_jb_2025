@@ -1,8 +1,11 @@
 package edu.io.player;
 
+import java.util.Objects;
+
 public class Vitals 
 {
     private int hydration;
+    private Runnable onDeathCallback;
 
     public Vitals(int hydration) 
     {
@@ -10,6 +13,7 @@ public class Vitals
             throw new IllegalArgumentException("hydration nie moze byc ujemny");
         
         this.hydration = hydration;
+        onDeathCallback = () -> {};
     }
 
     public Vitals() 
@@ -36,8 +40,20 @@ public class Vitals
             throw new IllegalArgumentException("amount nie moze byc ujemny");
         
         hydration -= amount;
-        if (hydration < 0) 
+        if (hydration <= 0) 
+        {
             hydration = 0;
+            onDeathCallback.run();
+        }
     }
 
+    public boolean isAlive()
+    {
+        return hydration > 0;
+    }
+
+    public void setOnDeathCallback(Runnable callback) 
+    {
+        this.onDeathCallback = Objects.requireNonNull(callback, "callback cannot be null");
+    }
 }
