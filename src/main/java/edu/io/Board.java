@@ -1,5 +1,7 @@
 package edu.io;
 
+import java.util.Objects;
+
 import edu.io.token.EmptyToken;
 import edu.io.token.Token;
 
@@ -39,7 +41,7 @@ public class Board
 
     public void placeToken(int col, int row, Token token)
     {
-        grid[col][row] = token;
+        grid[col][row] = Objects.requireNonNull(token, "Nie mozna polozyc null na planszy");
     }
 
     public Token peekToken(int col, int row)
