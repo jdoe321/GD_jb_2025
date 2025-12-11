@@ -67,7 +67,7 @@ public class Player
                     gold.gain(amount);
                 }
                 vitals.dehydrate(VitalsValues.DEHYDRATION_GOLD);
-                System.out.println("Gold collected: " + this.gold());
+                // shed.add(tool); //odlozenie narzedzia z powrotem do szopy
             }
             case PickaxeToken pickaxeToken ->
             {
@@ -90,6 +90,24 @@ public class Player
             {
                 // Nieznany token,
             }
+        }
+    }
+
+    public void displayStats() //debugowo wyswietla parametry playera
+    {
+        System.out.println("Hydration: " + vitals.hydration());
+        System.out.println("Gold: " + gold.amount());
+        Tool tool = shed.getTool();
+        if (tool instanceof PickaxeToken pickaxe)
+        {
+            System.out.print(pickaxe.label());
+            System.out.println(" - Durability: " + pickaxe.durability());
+            System.out.println(" - Gain Factor: " + pickaxe.gainFactor());
+            // shed.add(tool); //odlozenie narzedzia z powrotem do szopy
+        } 
+        else 
+        {
+            System.out.println("Tool: None");
         }
     }
 }
