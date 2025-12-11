@@ -34,6 +34,9 @@ public class Game
         AnvilToken anvil = new AnvilToken();
         board.placeToken(3, 3, anvil);
 
+        WaterToken water = new WaterToken();
+        board.placeToken(1, 5, water);
+
         while (true)
         {
             board.display();
