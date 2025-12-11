@@ -7,12 +7,12 @@ public class Player
     public PlayerToken token;
     public Gold gold = new Gold(0.0);
     private Shed shed = new Shed();
-    private Vitals vitals = new Vitals(10);
+    public Vitals vitals = new Vitals();
 
     public Player()
     {
         this.token = null;
-        this.vitals.setOnDeathCallback(() -> 
+        this.vitals.setOnDeathHandler(() -> 
         {
             System.out.println("Pelne odwodnenie.");
         });
@@ -21,7 +21,7 @@ public class Player
     public Player(PlayerToken token) 
     {
         this.assignToken(token);
-        this.vitals.setOnDeathCallback(() -> 
+        this.vitals.setOnDeathHandler(() -> 
         {
             System.out.println("Pelne odwodnenie.");
         });
@@ -86,7 +86,7 @@ public class Player
                 if ( shed.getTool() instanceof Repairable tool) 
                 {
                     tool.repair();
-                    vitals.dehydrate(VitalsValues.DEHYDTRAION_ANVIL);
+                    vitals.dehydrate(VitalsValues.DEHYDRATION_ANVIL);
                     System.out.println("naprawione");
                 } else 
                 {

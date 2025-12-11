@@ -52,7 +52,7 @@ public class Vitals
         return hydration > 0;
     }
 
-    public void setOnDeathCallback(Runnable callback) 
+    public void setOnDeathHandler(Runnable callback) 
     {
         this.onDeathCallback = Objects.requireNonNull(callback, "callback cannot be null");
     }
